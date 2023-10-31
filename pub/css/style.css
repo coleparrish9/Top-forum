@@ -1,0 +1,74 @@
+header {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  body {
+    background-color: teal;
+  }
+  
+  h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: gray;
+    color:black;
+    padding: 15px;
+    margin-bottom: 5px;
+  }
+  
+  #blogName {
+    color: white;
+  }
+  
+  main {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: -5px;
+    background-color: teal;
+  }
+  
+  .homepage-main {
+    margin-top: 40px;
+  }
+  
+  .user-name {
+    background-color: blue;
+  }
+  
+  .blog-main {
+    margin-top: 40px;
+  }
+  
+  .navBar {
+    background-color: silver;
+  }
+  
+  #titleInput,
+  #bodyInput,
+  #comment,
+  #email-login,
+  #password-login,
+  #name-signup,
+  #email-signup,
+  #password-signup {
+    background-color: white;
+  }
+  
+  .btn {
+    background-color: gray;
+  }
+  
+  .card-header {
+    background-color: white;
+  }
+  
+  .card-body {
+    background-color: white;
+  }
+  
+  .card {
+    background-color: white;
+  }
+  
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }

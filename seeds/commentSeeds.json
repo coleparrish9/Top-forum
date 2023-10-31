@@ -1,0 +1,27 @@
+[
+    {
+        "comment_content": "Where to next?",
+        "createdOn": "10/31/2023",
+        "user_id": 2,
+        "blog_id": 1
+    },
+    {
+        "comment_content": "Anyone got a rear locker for a 85 4runner?",
+        "createdOn": "10/31/2023",
+        "user_id": 3,
+        "blog_id": 1
+    },
+    {
+        "comment_content": "Marlin crawler triple stick for sale!",
+        "createdOn": "10/31/2023",
+        "user_id": 3,
+        "blog_id": 2
+    },
+    {
+        "comment_content": "Wow california is rad!",
+        "createdOn": "10/31/2023",
+        "user_id": 1,
+        "blog_id": 3
+    }
+    
+]
