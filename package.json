@@ -8,6 +8,6 @@
         "express-session": "^1.17.3",
         "express-sessions": "^1.0.1",
         "mysql2": "^3.6.0",
-        "sequelize": "^6.32.1"
+        "sequelize": "^6.33.0"
     }
 }
