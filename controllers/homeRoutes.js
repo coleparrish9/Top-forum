@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Blog, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
-//get all blogs and appends with user name and comments
+
 router.get("/", async (req, res) => {
   try {
     const blogData = await Blog.findAll({
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//gets a single blog by id and includes user name and comments
+
 router.get("/blog/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
@@ -61,7 +61,7 @@ router.get("/blog/:id", withAuth, async (req, res) => {
   }
 });
 
-//user goes to dashboard page when logged in
+
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -89,7 +89,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
   }
 });
 
-// NEW POST PAGE: Renders 'create.handlebars'; redirects to /login if not logged in
+
 router.get("/create", async (req, res) => {
   try {
     if (req.session.logged_in) {
