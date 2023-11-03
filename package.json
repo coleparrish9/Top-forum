@@ -1,13 +1,33 @@
 {
-    "dependencies": {
-        "bcrypt": "^5.1.1",
-        "connect-session-sequelize": "^7.1.7",
-        "dotenv": "^16.3.1",
-        "express": "^4.18.2",
-        "express-handlebars": "^7.1.2",
-        "express-session": "^1.17.3",
-        "express-sessions": "^1.0.6",
-        "mysql2": "^3.6.2",
-        "sequelize": "^6.32.1"
+    "name": "top-forum",
+    "version": "1.0.0",
+    "description": "## Your Task",
+    "main": "index.js",
+    "scripts": {
+      "start": "node server.js",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "seed": "node seeds/seed.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/coleparrish9/Top-forum"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/coleparrish9/Top-forum"
+    },
+    "homepage": "https://github.com/coleparrish9/Top-forum",
+"dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.32.1"
     }
 }

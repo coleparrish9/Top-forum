@@ -1,74 +1,73 @@
-header {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+html{
+  background-color: var(--lightColor);
+  color: var(--darkColor);
+}
+
+header{
+  background-color: var(--darkColor);
+  color: var(--lightColor);
+  padding-left: 3%;
+}
+
+.post{
+  background-color: var(--lightColor);
+  color: var(--darkColor);
+  border: 1px solid var(--darkColor);
+  border-radius: 5px;
+  padding: 10px 10px 10px 3%;
+  margin: 10px 0 10px 0;
+  .postBody{
+    display: none;
   }
-  
-  body {
-    background-color: teal;
+}
+
+.postHeader{
+  background-color: var(--darkColor);
+  color: var(--lightColor);
+  margin: 0 -1% 10px -3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashPost{
+  .postContent, .editForm, .edit-post-button, .save-edit-button, .cancel-edit-button, .delete-post-button{
+    display: none;
   }
-  
-  h1 {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: gray;
-    color:black;
-    padding: 15px;
-    margin-bottom: 5px;
+}
+
+.expanded{
+  .postContent, .edit-post-button, .delete-post-button, .postBody{
+    display: block;
   }
-  
-  #blogName {
-    color: white;
+  .new-comment-form, .submit-comment-button, .cancel-comment-button{
+    display: none;
   }
-  
-  main {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-top: -5px;
-    background-color: teal;
+}
+
+.editing{
+  .editForm, .cancel-edit-button, .save-edit-button{
+    display: block;
   }
-  
-  .homepage-main {
-    margin-top: 40px;
+  .postContent, .title{
+    display: none;
   }
-  
-  .user-name {
-    background-color: blue;
+}
+
+.commenting{
+  .new-comment-form, .cancel-comment-button, .submit-comment-button{
+    display: block;
   }
-  
-  .blog-main {
-    margin-top: 40px;
+  .new-comment-button{
+    display: none;
   }
-  
-  .navBar {
-    background-color: silver;
-  }
-  
-  #titleInput,
-  #bodyInput,
-  #comment,
-  #email-login,
-  #password-login,
-  #name-signup,
-  #email-signup,
-  #password-signup {
-    background-color: white;
-  }
-  
-  .btn {
-    background-color: gray;
-  }
-  
-  .card-header {
-    background-color: white;
-  }
-  
-  .card-body {
-    background-color: white;
-  }
-  
-  .card {
-    background-color: white;
-  }
-  
-  .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
-    transition: all 0.3s ease;
-  }
+}
+
+.comment{
+  background-color: var(--lightColor);
+  color: var(--darkColor);
+  border: 1px solid var(--darkColor);
+  border-radius: 5px;
+  padding: 10px 10px 10px 3%;
+  margin: 10px 0 10px 0;
+}

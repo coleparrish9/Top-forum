@@ -1,9 +1,11 @@
+const dotenv = require('dotenv').config();
 const router = require('express').Router();
 
-const homeRoutes = require('./homeRoutes');
 const apiRoutes = require('./api');
+const homeRoutes = require('./homeRoutes');
+
 
 router.use('/', homeRoutes);
-router.use('/', apiRoutes);
+router.use('/api', apiRoutes);
 
 module.exports = router;

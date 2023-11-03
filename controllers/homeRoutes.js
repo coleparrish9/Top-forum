@@ -1,153 +1,121 @@
-const router = require("express").Router();
-const { Blog, User, Comment } = require("../models");
-const withAuth = require("../utils/auth");
+const router = require('express').Router();
+const {User, Blogpost, Comment} = require('../models');
+const withAuth = require('../utils/auth');
 
-
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const blogData = await Blog.findAll({
+    console.log("homepage route called");
+
+    const blogpostData = await Blogpost.findAll({
       include: [
         {
           model: User,
-          attributes: ["name"],
+
         },
         {
           model: Comment,
-          attributes: ["comment_content"],
+          include: [
+            {
+              model: User,
+
+            },
+          ],
         },
       ],
     });
 
-    const blogs = blogData.map((blog) =>
-      blog.get({ plain: true })
-    );
-
-    res.render("homepage", {
-      blogs,
-      logged_in: req.session.logged_in,
+    const Blogposts = blogpostData.map((BlogPost) => BlogPost.get({ plain: true }));
+    console.log("rendering homepage");
+    res.render('homepage', { 
+      Blogposts,
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
+
   }
 });
 
 
-router.get("/blog/:id", withAuth, async (req, res) => {
-  try {
-    const blogData = await Blog.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ["name"],
-        },
-       {
-          model: Comment,
-          include: [User],
-        },
-      ],
-    });
 
-    const blog = blogData.get({ plain: true });
-    console.log(blog);
-
-    res.render("blog", {
-      ...blog,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-    res.redirect("/login");
-  }
-});
-
-
-router.get("/dashboard", withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [
-        {
-          model: Blog,
-          include: [User],
-        },
-        {
-          model: Comment,
-        },
-      ],
+      attributes: { exclude: ['password'] },
+      include: [{ model: Blogpost }],
     });
 
     const user = userData.get({ plain: true });
-    console.log(user)
-
-    res.render("dashboard", {
+    console.log("user: ");
+    console.log(user);
+    res.status(200).render('dashboard', {
       ...user,
-      logged_in: true,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-router.get("/create", async (req, res) => {
-  try {
-    if (req.session.logged_in) {
-      res.render("create", {
-        logged_in: req.session.logged_in,
-        userId: req.session.user_id,
-      });
-      return;
-    } else {
-      res.redirect("/login");
-    }
-  } catch (err) {
+    console.log("error rendering dashboard");
     console.log(err);
     res.status(500).json(err);
   }
 });
-
-router.get("/create/:id", async (req, res) => {
-  try {
-    const blogData = await Blog.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ["name"],
-        },
-        {
-          model: Comment,
-          include: [User],
-        },
-      ],
-    });
-
-    const blog = blogData.get({ plain: true });
-    console.log(blog);
-
-    if (req.session.logged_in) {
-      res.render("edit", {
-        ...blog,
-        logged_in: req.session.logged_in,
-        userId: req.session.user_id,
-      });
-      return;
-    } else {
-      res.redirect("/login");
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-router.all("/login", (req, res) => {
+router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    console.error("signup route called when user is already logged in");
+    res.redirect('/');
+    return;
+  }
+  if (req.session.logged_in === false) {
+    res.render('signup', {
+      logged_in: req.session.logged_in  
+    });
     return;
   }
 
-  res.render("login");
+  else{
+    console.log("no session detected, rendering signup page");
+    res.render('signup', {
+      logged_in: req.session.logged_in  
+    });
+    return;
+  }
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    console.error("login route called when user is already logged in");
+    res.redirect('/');
+    return;
+  }
+
+  if (req.session.logged_in === false) {
+    res.render('login', {
+      logged_in: req.session.logged_in 
+    });
+    return;
+  }
+
+  else{
+    console.log("no session detected, rendering login page");
+    res.render('login', {
+      logged_in: req.session.logged_in  
+    });
+    return;
+  }
+});
+
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in === false) {
+    console.error("logout route called when user is not logged in");
+    res.redirect('/login');
+    return;
+  }
+  console.log("logging out user");
+  req.session.destroy(() => {
+    console.log("user logged out");
+    console.log("rendering logout page");
+    res.status(200).render('logout', {logged_in: false});
+  });
+  return;
 });
 
 module.exports = router;

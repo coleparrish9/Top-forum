@@ -1,9 +1,5 @@
 module.exports = {
-    format_date: (date) => {
-      // Format date as MM/DD/YYYY
-      return date.toLocaleDateString();
-    },
-    userHome: (pageUser, userId) => {
-      return pageUser === userId;
-    },
-};    
+  format_date: (date) => {
+    return date.toLocaleDateString();
+  },
+};
